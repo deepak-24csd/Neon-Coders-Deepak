@@ -53,19 +53,14 @@ Future versions will include detailed installation and configuration steps.
 ## 📂 Repository Structure
 Electricity-monitoring-dashboard
 
-│ 
-
-├── README.md 
-
+│  
+├── README.md  
 ├── backend/   
 
-## Python scripts for data processing & automation 
-├── frontend/         # Dashboard UI (prototype) 
-
-├── data/             # Sample input data for testing 
-
-├── docs/             # Documentation & diagrams 
-
+### Python scripts for data processing & automation 
+├── frontend/         # Dashboard UI (prototype)  
+├── data/             # Sample input data for testing  
+├── docs/             # Documentation & diagrams  
 └── tests/            # Unit tests
 
 ---
