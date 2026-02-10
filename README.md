@@ -1,12 +1,16 @@
 # Neon-Coders-Deepak
 This repository  for the Zayathon - Code for Coexistence, where our team's Project and Website are pushed.
 
-Our Team : Deepak P 
-           Sreenandha S 
-           Surya V 
+---
+
+# Our Team : 
+           Deepak P  
+           Sreenandha S  
+           Surya V  
            Waseem Ahamed S
+                      --from the department of Computer Science and Design pursuing second year.  
 
-
+---
 
 # ⚡ Electricity Monitoring & Smart Dashboard
 
