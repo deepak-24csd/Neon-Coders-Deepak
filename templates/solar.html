@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>☀️ Solar Energy Monitoring</h2>
+
+<!-- CURRENT SOLAR STATUS -->
+<div class="card">
+  <h3>Today's Solar Generation</h3>
+  <h1>{{ solar }} kWh</h1>
+
+  {% if solar < 5 %}
+    <p style="color:red;">🚨 Low Solar Generation</p>
+  {% elif solar < 10 %}
+    <p style="color:orange;">⚠️ Moderate Solar Generation</p>
+  {% else %}
+    <p style="color:lightgreen;">✅ High Solar Generation</p>
+  {% endif %}
+</div>
+
+<!-- SOLAR ACTIVITY SIMULATION -->
+<div class="card">
+  <h3>Simulate Solar Conditions</h3>
+  <p>Adjust sunlight conditions to track solar output.</p>
+
+  <div class="device">
+    <span>☀️ Increase exposure (+1 kWh)</span>
+    <a href="/solar/add">
+      <button class="on">Increase</button>
+    </a>
+  </div>
+
+  <div class="device">
+    <span>☁️ Decrease Exposure (−1 kWh)</span>
+    <a href="/solar/reduce">
+      <button class="off">Decrease</button>
+    </a>
+  </div>
+</div>
+
+<!-- SOLAR IMPACT -->
+<div class="card">
+  <h3>🔋 Solar Impact</h3>
+
+  {% if solar > 10 %}
+    <p>Solar energy is covering a large portion of household electricity needs.</p>
+  {% elif solar > 5 %}
+    <p>Solar energy partially supports household consumption.</p>
+  {% else %}
+    <p>High dependency on grid electricity. Try shifting usage to daytime.</p>
+  {% endif %}
+</div>
+
+<!-- ENERGY SAVINGS INSIGHT -->
+<div class="card">
+  <h3>💡 Solar Savings Insight</h3>
+
+  {% if solar > 8 %}
+    <p>You are effectively saving electricity costs using solar power.</p>
+  {% else %}
+    <p>Use high-power appliances during peak sunlight hours to maximize solar benefits.</p>
+  {% endif %}
+</div>
+
+{% endblock %}

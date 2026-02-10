@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>💧 Water Usage Monitor</h2>
+
+<!-- CURRENT USAGE -->
+<div class="card">
+  <h3>Today's Water Consumption</h3>
+  <h1>{{ water }} Liters</h1>
+
+  {% if water < 300 %}
+    <p style="color:lightgreen;">✅ Low Usage</p>
+  {% elif water < 600 %}
+    <p style="color:orange;">⚠️ Moderate Usage</p>
+  {% else %}
+    <p style="color:red;">🚨 High Usage</p>
+  {% endif %}
+</div>
+
+<!-- ACTIVITY-BASED TRACKING -->
+<div class="card">
+  <h3>Simulate Water Activities</h3>
+  <p>Select an activity to track real usage.</p>
+
+  <div class="device">
+    <span>🚿 Shower (50 L)</span>
+    <a href="/water/add">
+      <button class="on">Use</button>
+    </a>
+  </div>
+
+  <div class="device">
+    <span>🚽 Toilet Flush (30 L)</span>
+    <a href="/water/add">
+      <button class="on">Use</button>
+    </a>
+  </div>
+
+  <div class="device">
+    <span>🧺 Washing (70 L)</span>
+    <a href="/water/add">
+      <button class="on">Use</button>
+    </a>
+  </div>
+
+  <div class="device">
+    <span>💧 Save Water (−50 L)</span>
+    <a href="/water/reduce">
+      <button class="off">Save</button>
+    </a>
+  </div>
+</div>
+
+<!-- CONSERVATION INSIGHT -->
+<div class="card">
+  <h3>💡 Water Saving Tip</h3>
+  {% if water > 600 %}
+    <p>Reduce shower time to save up to 50 liters per day.</p>
+  {% else %}
+    <p>Your water usage is within efficient limits.</p>
+  {% endif %}
+</div>
+
+
+{% endblock %}
+

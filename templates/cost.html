@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>💰 Cost & Bill Tracking</h2>
+<p>Weekly and monthly cost estimation for electricity and water usage.</p>
+
+<!-- ELECTRICITY COST -->
+<div class="card">
+  <h3>⚡ Electricity Bill</h3>
+
+  <div class="row">
+    <span>Current Usage</span>
+    <strong>{{ electricity }} kWh</strong>
+  </div>
+
+  <div class="row">
+    <span>Weekly Bill</span>
+    <strong>₹ {{ elec_week_bill }}</strong>
+  </div>
+
+  <div class="row">
+    <span>Monthly Bill</span>
+    <strong>₹ {{ elec_month_bill }}</strong>
+  </div>
+
+  <div class="device">
+    <a href="{{ url_for('rooms_page') }}">
+      <button class="on">🏠 Manage Appliances</button>
+    </a>
+  </div>
+</div>
+
+
+<!-- WATER COST -->
+<div class="card">
+  <h3>💧 Water Bill</h3>
+
+  <div class="row">
+    <span>Current Usage</span>
+    <strong>{{ water }} Liters</strong>
+  </div>
+
+  <div class="row">
+    <span>Weekly Bill</span>
+    <strong>₹ {{ water_week_bill }}</strong>
+  </div>
+
+  <div class="row">
+    <span>Monthly Bill</span>
+    <strong>₹ {{ water_month_bill }}</strong>
+  </div>
+
+  <div class="device">
+    <a href="{{ url_for('water_add') }}">
+      <button class="on">➕ Use Water</button>
+    </a>
+    <a href="{{ url_for('water_reduce') }}">
+      <button class="off">➖ Save Water</button>
+    </a>
+  </div>
+</div>
+
+
+<!-- INSIGHTS -->
+<div class="card">
+  <h3>💡 Cost Saving Insight</h3>
+
+  {% if elec_month_bill > 1200 %}
+    <p>Reduce AC usage during peak hours to lower electricity bills.</p>
+  {% else %}
+    <p>Your electricity consumption is within a safe budget.</p>
+  {% endif %}
+
+  {% if water_month_bill > 300 %}
+    <p>Consider reducing shower time to save water costs.</p>
+  {% else %}
+    <p>Water usage is efficiently managed.</p>
+  {% endif %}
+</div>
+
+{% endblock %}

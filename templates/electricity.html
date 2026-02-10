@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>⚡ Electricity Usage Dashboard</h2>
+
+<!-- TOTAL ELECTRICITY -->
+<div class="card">
+  <p>Total Electricity Consumption</p>
+  <h1>{{ electricity }} kWh</h1>
+</div>
+
+<!-- LOAD CONTROL BUTTONS -->
+<div class="card">
+  <h3>Load Control</h3>
+
+  <div class="device">
+    <!-- Add Load: Turns ON AC in Living Room -->
+    <form action="{{ url_for('electricity_add') }}" method="get">
+      <button type="submit" class="on">➕ Add Load</button>
+    </form>
+
+    <!-- Reduce Load: Turns OFF AC in Living Room -->
+    <form action="{{ url_for('electricity_reduce') }}" method="get">
+      <button type="submit" class="off">➖ Reduce Load</button>
+    </form>
+  </div>
+</div>
+
+<!-- APPLIANCE-WISE USAGE -->
+<div class="card">
+  <h3>🔌 Appliance-wise Consumption</h3>
+
+  {% if appliance_usage %}
+    {% for appliance, usage in appliance_usage.items() %}
+      <div class="row">
+        <span>{{ appliance }}</span>
+        <strong>{{ usage }} kWh</strong>
+      </div>
+    {% endfor %}
+  {% else %}
+    <p>No appliances are currently ON.</p>
+  {% endif %}
+</div>
+
+<!-- HIGHEST CONSUMPTION -->
+<div class="card">
+  <h3>🚨 Highest Energy Consumer</h3>
+  <p><strong>{{ highest_device }}</strong> consumes the most electricity.</p>
+</div>
+
+<!-- SMALL SQUARE GRAPH -->
+<div class="card square-card">
+  <div class="square-header">
+    <span>📊 Appliance Usage</span>
+    <strong>kWh</strong>
+  </div>
+
+  <div class="square-chart">
+    <canvas id="applianceChart"></canvas>
+  </div>
+</div>
+
+<!-- CHART.JS -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+const ctx = document.getElementById('applianceChart');
+
+new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: {{ appliance_usage.keys() | list | safe }},
+    datasets: [{
+      data: {{ appliance_usage.values() | list | safe }},
+      backgroundColor: '#4cd964'
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false }
+    },
+    scales: {
+      x: { ticks: { color: 'white' } },
+      y: { ticks: { color: 'white' } }
+    }
+  }
+});
+</script>
+
+{% endblock %}

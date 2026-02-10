@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>🏠 Home Energy Dashboard</h2>
+
+<!-- ELECTRICITY SUMMARY -->
+<div class="card">
+  <h3>⚡ Electricity Usage</h3>
+  <h1>{{ electricity }} kWh</h1>
+
+  <div class="device">
+    <a href="/electricity/add">
+      <button class="on">➕ Add Load</button>
+    </a>
+    <a href="/electricity/reduce">
+      <button class="off">➖ Reduce Load</button>
+    </a>
+  </div>
+</div>
+
+<!-- BILL STATUS -->
+<div class="card">
+  <h3>💰 Electricity Bill</h3>
+  <h2>₹ {{ bill }}</h2>
+  <p>Bill Usage: {{ percent }}%</p>
+
+  <div class="progress">
+    <div class="progress-bar" style="width: {{ percent }}%;"></div>
+  </div>
+</div>
+
+<!-- WATER SUMMARY -->
+<div class="card">
+  <h3>💧 Water Usage</h3>
+  <h1>{{ water }} Liters</h1>
+
+  <div class="device">
+    <a href="/water/add">
+      <button class="on">➕ Use Water</button>
+    </a>
+    <a href="/water/reduce">
+      <button class="off">➖ Save Water</button>
+    </a>
+  </div>
+</div>
+
+<!-- SOLAR SUMMARY -->
+<div class="card">
+  <h3>☀️ Solar Energy</h3>
+  <h1>{{ solar }} kWh</h1>
+
+  <div class="device">
+    <a href="/solar/add">
+      <button class="on">➕ Increase</button>
+    </a>
+    <a href="/solar/reduce">
+      <button class="off">➖ Decrease</button>
+    </a>
+  </div>
+</div>
+
+{% endblock %}

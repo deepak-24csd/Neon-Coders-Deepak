@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>🔌 All Appliances</h2>
+<p>Control all appliances from a single place.</p>
+
+{% for room, devices in rooms.items() %}
+<div class="card">
+
+  <h3>🏠 {{ room }}</h3>
+
+  {% for device, state in devices.items() %}
+  <div class="device">
+    <span>
+      {% if device == "Light" %} 💡
+      {% elif device == "AC" %} ❄️
+      {% elif device == "Fan" %} 🌀
+      {% else %} 🔌 {% endif %}
+      {{ device }}
+    </span>
+
+    <a href="{{ url_for('toggle_appliance', room=room, device=device) }}">
+      <button class="{{ 'on' if state else 'off' }}">
+        {{ 'ON' if state else 'OFF' }}
+      </button>
+    </a>
+  </div>
+  {% endfor %}
+
+</div>
+{% endfor %}
+
+{% endblock %}

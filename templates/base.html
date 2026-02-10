@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Smart Home Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="navbar">
+    <span class="logo">Neon Energy Dashboard</span>
+
+    <div class="nav-links">
+        <a href="{{ url_for('dashboard') }}">Home</a>
+        <a href="{{ url_for('electricity_page') }}">Electricity</a>
+        <a href="{{ url_for('cost_page') }}">Cost</a>
+        <a href="{{ url_for('water_page') }}">Water</a>
+        <a href="{{ url_for('solar_page') }}">Solar</a>
+        <a href="{{ url_for('rooms_page') }}">Rooms</a>
+    </div>
+</div>
+
+<!-- BACK BUTTON (HIDDEN ON HOME PAGE) -->
+{% if request.path != '/' %}
+<div class="back-btn">
+    <a href="{{ url_for('dashboard') }}">
+        ⬅ Back to Dashboard
+    </a>
+</div>
+{% endif %}
+
+<div class="content">
+    {% block content %}{% endblock %}
+</div>
+
+</body>
+</html>
